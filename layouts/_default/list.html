@@ -1,0 +1,24 @@
+{{ define "main" }}
+{{ $pages := union .RegularPages .Sections }}
+{{ if .IsHome }}
+{{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{ end }}
+<div class="mx-auto max-w-screen-md px-6">
+{{ if and .Title (not .IsHome) }}
+<h2 class="text-xl mt-16 mb-6 text-slate-600">
+    {{ if (eq .Type "tags") }}Posts tagged {{ end }}
+    {{ .Title }}
+</h2>
+{{ end }}
+{{ range $pages }}
+<article class="relative py-6">
+    <h1 class="text-xl md:text-2xl">{{ .Title }}</h1>
+    <p class="text-slate-600">Posted {{ .Date | time.Format "2 January 2006" }}</p>
+    <a href="{{ .Permalink }}" class="absolute inset-0"><span class="hidden">Continue reading</span></a>
+</article>
+{{ end }}
+</div>
+{{ if .IsHome }}
+{{ partial "posts-by-tag.html" . }}
+{{ end }}
+{{ end }}

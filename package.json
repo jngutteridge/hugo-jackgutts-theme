@@ -1,0 +1,19 @@
+{
+  "name": "jackgutts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./tailwind.css -o ./assets/style.css",
+    "watch": "npx tailwindcss -i ./tailwind.css -o ./assets/style.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.2",
+    "@tailwindcss/typography": "^0.5.9"
+  }
+}

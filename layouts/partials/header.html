@@ -1,0 +1,32 @@
+<header class="bg-slate-600 text-slate-300 relative">
+    <div class="mx-auto max-w-screen-md flex flex-col text-center items-center py-4 gap-4 md:text-left md:flex-row">
+        <h2 class="text-2xl min-w-fit flex-grow px-6">Jack Gutts</h2>
+        <a href="/" class="absolute inset-0">
+            <span class="hidden">Home</span>
+        </a>
+        <nav class="max-w-fit mx-auto px-6">
+            <ul class="flex gap-4">
+                <li class="relative"><img src="/icons/mastodon.svg" width="32px" alt="" />
+                    <span class="hidden">Mastodon</span>
+                    <a href="{{ .Site.Params.mastodon }}" rel="me" class="absolute inset-0"></a>
+                </li>
+                <li class="relative"><img src="/icons/twitter.svg" width="32px" alt="" />
+                    <span class="hidden">Twitter</span>
+                    <a href="{{ .Site.Params.twitter }}" rel="me" class="absolute inset-0"></a>
+                </li>
+                <li class="relative"><img src="/icons/instagram.svg" width="32px" alt="" />
+                    <span class="hidden">Instagram</span>
+                    <a href="{{ .Site.Params.instagram }}" rel="me" class="absolute inset-0"></a>
+                </li>
+                <li class="relative"><img src="/icons/soundcloud.svg" width="32px" alt="" />
+                    <span class="hidden">SoundCloud</span>
+                    <a href="{{ .Site.Params.soundcloud }}" rel="me" class="absolute inset-0"></a>
+                </li>
+                <li class="relative"><img src="/icons/email.svg" width="32px" alt="" />
+                    <span class="hidden">Email</span>
+                    <a href="{{ .Site.Params.email }}" rel="me" class="absolute inset-0"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
