@@ -2,10 +2,21 @@
 {{ $pages := union .RegularPages .Sections }}
 {{ if .IsHome }}
 {{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{ $pages = first 5 $pages }}
+{{ else if eq .Slug "all" }}
+{{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{ end }}
 <div class="mx-auto max-w-screen-md px-6">
-{{ if and .Title (not .IsHome) }}
-<h2 class="text-xl mt-16 mb-6 text-slate-600">
+{{ if and .Title .IsHome }}
+<h2 class="text-xl mt-16 text-slate-600">
+    Latest posts
+</h2>
+{{ else if eq .Slug "all" }}
+<h2 class="text-xl mt-16 text-slate-600">
+    All posts
+</h2>
+{{ else }}
+<h2 class="text-xl mt-16 mb-3 text-slate-600">
     {{ if (eq .Type "tags") }}Posts tagged {{ end }}
     {{ .Title }}
 </h2>
@@ -16,6 +27,11 @@
     <p class="text-slate-600">Posted {{ .Date | time.Format "2 January 2006" }}</p>
     <a href="{{ .Permalink }}" class="absolute inset-0"><span class="hidden">Continue reading</span></a>
 </article>
+{{ end }}
+{{ if not (eq .Slug "all") }}
+<a class="block text-slate-600 underline" href="/all">View all posts</a>
+{{ else if not .IsHome }}
+<a class="block mb-6 text-slate-600 underline" href="/">Back to home page</a>
 {{ end }}
 </div>
 {{ if .IsHome }}
