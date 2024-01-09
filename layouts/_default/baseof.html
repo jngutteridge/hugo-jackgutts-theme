@@ -3,7 +3,7 @@
     {{- partial "head.html" . -}}
     <body class="min-h-screen flex flex-col">
         {{- partial "header.html" . -}}
-        <div id="content">
+        <div id="content" class="relative min-h-full">
         {{- block "main" . }}{{- end }}
         </div>
         {{- partial "footer.html" . -}}

@@ -6,7 +6,7 @@
 {{ else if eq .Slug "all" }}
 {{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{ end }}
-<div class="mx-auto max-w-screen-md px-6">
+<div class="mx-auto max-w-screen-md px-6 mb-8">
 {{ if and .Title .IsHome }}
 <h2 class="text-xl mt-16 text-slate-600">
     Latest posts
@@ -17,14 +17,14 @@
 </h2>
 {{ else }}
 <h2 class="text-xl mt-16 mb-3 text-slate-600">
-    {{ if (eq .Type "tags") }}Posts tagged {{ end }}
+    {{ if (eq .Type "categories") }}Posts in {{ end }}
     {{ .Title }}
 </h2>
 {{ end }}
 {{ range $pages }}
 <article class="relative py-6">
     <h1 class="text-xl md:text-2xl">{{ .Title }}</h1>
-    <p class="text-slate-600">Posted {{ .Date | time.Format "2 January 2006" }}</p>
+    <p class="text-slate-600">Posted in {{ index .Params.Categories 0 }} on {{ .Date | time.Format "2 January 2006" }}</p>
     <a href="{{ .Permalink }}" class="absolute inset-0"><span class="hidden">Continue reading</span></a>
 </article>
 {{ end }}
@@ -35,6 +35,6 @@
 {{ end }}
 </div>
 {{ if .IsHome }}
-{{ partial "posts-by-tag.html" . }}
+{{ partial "posts-by-category.html" . }}
 {{ end }}
 {{ end }}

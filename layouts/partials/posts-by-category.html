@@ -1,9 +1,9 @@
 <div class="mx-auto max-w-screen-md px-6">
-<h2 class="text-xl mt-16 mb-6 text-slate-600">Posts by tag</h2>
+<h2 class="text-xl mt-16 mb-6 text-slate-600">Posts by category</h2>
 <div class="flex flex-wrap gap-3 mb-6 flex-col md:flex-row">
-{{range $name, $taxonomy := .Site.Taxonomies.tags}}
+{{range $name, $taxonomy := .Site.Taxonomies.categories}}
 {{ $count := .Count }}
-{{ with $.Site.GetPage (printf "/tags/%s" $name) }}
+{{ with $.Site.GetPage (printf "/categories/%s" $name) }}
 <article class="relative rounded-md bg-slate-300 px-4 py-2">
     <h1 class="text-md">{{ .Title }}</h1>
     <p class="text-sm text-slate-600">{{ $count }} posts</p>

@@ -1,16 +1,19 @@
 {{ define "main" }}
+{{ $category := index .Params.Categories 0 }}
 <div class="bg-slate-600">
 <div class="mx-auto max-w-screen-md text-center px-4 py-8 text-slate-300">
     <h1 class="text-4xl text-slate-50 text-balance">{{ .Title }}</h1>
     {{ if isset .Params "date"}}
-    <p class="mt-8">Posted {{ .Date | time.Format "2 January 2006" }}</p>
+    <p class="mt-8">Posted in
+        {{ with $.Site.GetPage (printf "/categories/%s" $category) }} <a class="underline" href="{{ .RelPermalink }}">{{ .Name }}</a>{{ end }}
+        on {{ .Date | time.Format "2 January 2006" }}</p>
     {{ $readTime := cond (gt .ReadingTime 1) "minutes" "minute" }}
     <p>Reading time {{ .ReadingTime }} {{ $readTime }}</p>
     {{ end }}
 </div>
 </div>
-<div class="prose mx-auto my-16 px-6">
+<div class="prose mx-auto mt-16 px-6 relative">
 {{ .Content }}
+<p class="text-slate-400 my-8">{{ with $.Site.GetPage (printf "/categories/%s" $category) }}<a class="font-normal text-slate-400" href="{{ .RelPermalink }}">See more posts in {{ .Name }}</a>{{ end }}</p>
 </div>
-{{ partial "tags.html" . }}
 {{ end }}
